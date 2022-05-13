@@ -189,7 +189,7 @@ def maya():
                 r3 = requests.post(url=apiUrl, json=data3, headers=headers)
                 for item in r3.json()['data']['boards'][0]['groups'][0]['items']:
 
-                    if ((int(get_column_value_coin(look_for_id_email(get_column_value_Email_part(item['id']))))) == 0):
+                    if ((int(get_column_value_coin(look_for_id_email(get_column_value_Email_part(item['id']))))) <= 0):
                         delete_item_query((item['id']))
 
                     if(item['column_values'][4]['text'] =='v'):
@@ -197,8 +197,9 @@ def maya():
                         num_decrese = int(get_column_value_coin(item_decrese))
                         item_increse = look_for_id_email(get_column_value_Email_tutur(item['id']))
                         num_increse = int(get_column_value_coin(item_increse))
-                        update_item_query(2665323559, item_decrese, 'numbers', num_decrese-1)
+                        update_item_query(2665323559, item_decrese, 'numbers', num_decrese - 1)
                         update_item_query(2665323559, item_increse, 'numbers', num_increse + 1)
+                        delete_item_query((item['id']))
 
 
 maya()
